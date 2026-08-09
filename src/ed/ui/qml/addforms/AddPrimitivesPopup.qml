@@ -7,7 +7,7 @@ import QtQuick.Controls
 import Tire 1.0
 import "../components"
 
-Popup {
+Rectangle {
     id: addPrimitivesPopupComponent
 
     readonly property var _fonts: Appearence.fonts
@@ -15,33 +15,117 @@ Popup {
     readonly property var _radius: Appearence.radius
     readonly property var _color: Appearence.colors
 
-    height: 216
+    height: addItemsButtonsLayout.implicitHeight
 
-    radius: _radius.half
+    radius: _radius.quarter
     color: _color.background_overlay_60
 
     ColumnLayout {
         id: addItemsButtonsLayout
+        spacing: 0
 
         anchors {
             top: parent.top
-            topMargin: _gaps.half
             left: parent.left
-            leftMargin: _gaps.half
             right: parent.right
-            rightMargin: _gaps.half
         }
+
+        readonly property int itemsHeight: 32
 
         NpContextMenuButton {
             id: addSphereButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 24
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Box"
+            enabled: true
+
+            topLeftRadius: _radius.quarter
+            topRightRadius: _radius.quarter
+
+            font: _fonts.label_accent
         }
 
         NpContextMenuButton {
             id: addBoxButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 24
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Sphere"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addCylinderButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Cylinder"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addCapsuleButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Capsule"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addFromFileButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "From file"
+            enabled: true
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addImplicitButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Implicit surface"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addBezierSurfaceButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Bezier surface"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addLandscapeButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Landscape"
+            enabled: false
+
+            font: _fonts.label_accent
+        }
+
+        NpContextMenuButton {
+            id: addPolytopeButton
+            Layout.fillWidth: true
+            Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+            text: "Polytope"
+            enabled: false
+
+            font: _fonts.label_accent
+
+            bottomLeftRadius: _radius.quarter
+            bottomRightRadius: _radius.quarter
         }
     }
 }

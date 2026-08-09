@@ -78,9 +78,6 @@ Rectangle {
                     if (addSceneObjBtn.checked) {
                         showSceneInfoBtn.checked = false;
                         settingsBtn.checked = false;
-                        addPrimitivesPopupItem.open();
-                    } else {
-                        addPrimitivesPopupItem.close();
                     }
                 }
             }
@@ -164,7 +161,7 @@ Rectangle {
         visible: showSceneInfoBtn.checked
     }
 
-    AddPriomitivesPopup {
+    AddPrimitivesPopup {
         id: addPrimitivesPopupItem
 
         anchors {

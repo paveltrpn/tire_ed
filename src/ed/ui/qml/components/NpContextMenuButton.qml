@@ -18,6 +18,11 @@ QuickTemplates.Button {
     property bool isBorderEnabled: false
     property color backgroundColor: _color.background_overlay_40
 
+    property alias topLeftRadius: backgroundItem.topLeftRadius
+    property alias topRightRadius: backgroundItem.topRightRadius
+    property alias bottomLeftRadius: backgroundItem.bottomLeftRadius
+    property alias bottomRightRadius: backgroundItem.bottomRightRadius
+
     states: [
         State {
             when: control.down
@@ -49,19 +54,21 @@ QuickTemplates.Button {
     // implicitContentWidth + leftPadding + rightPadding)
     // implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
     // implicitContentHeight + topPadding + bottomPadding)
+
     width: 32
     height: 128
 
     topPadding: 2
     bottomPadding: 2
-    leftPadding: 2
-    rightPadding: 2
+    leftPadding: 4
+    rightPadding: 4
 
     background: Rectangle {
         id: backgroundItem
         anchors.fill: parent
         color: control.backgroundColor
         opacity: control.enabled ? 1.0 : 0.3
+
     }
 
     contentItem: IconLabel {
