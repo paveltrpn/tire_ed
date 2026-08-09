@@ -78,6 +78,9 @@ Rectangle {
                     if (addSceneObjBtn.checked) {
                         showSceneInfoBtn.checked = false;
                         settingsBtn.checked = false;
+                        addPrimitivesPopupItem.open();
+                    } else {
+                        addPrimitivesPopupItem.close();
                     }
                 }
             }
@@ -161,8 +164,9 @@ Rectangle {
         visible: showSceneInfoBtn.checked
     }
 
-    AddBox {
-        id: addBoxWidget
+    AddPriomitivesPopup {
+        id: addPrimitivesPopupItem
+
         anchors {
             top: mainLeftPanel.top
             left: mainLeftPanel.right
