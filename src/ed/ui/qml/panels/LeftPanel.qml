@@ -69,16 +69,22 @@ Rectangle {
                 Layout.preferredHeight: _gaps.half
             }
 
+            property var buttonsList: []
+
             NpButton {
                 id: addSceneObjBtn
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 icon.source: "image://TiredImageProvider/shapes-svgrepo-com.svg"
+
                 onClicked: {
                     addSceneObjBtn.checked = !addSceneObjBtn.checked;
                     if (addSceneObjBtn.checked) {
-                        showSceneInfoBtn.checked = false;
-                        settingsBtn.checked = false;
+                        mainButtonsLayout.deselectOthers(addSceneObjBtn);
                     }
+                }
+
+                Component.onCompleted: {
+                    mainButtonsLayout.buttonsList.push(addSceneObjBtn);
                 }
             }
 
@@ -86,12 +92,16 @@ Rectangle {
                 id: editSceneObjBtn
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 icon.source: "image://TiredImageProvider/wand-magic-svgrepo-com.svg"
+
                 onClicked: {
                     editSceneObjBtn.checked = !editSceneObjBtn.checked;
                     if (editSceneObjBtn.checked) {
-                        addSceneObjBtn.checked = false;
-                        settingsBtn.checked = false;
+                        mainButtonsLayout.deselectOthers(editSceneObjBtn);
                     }
+                }
+
+                Component.onCompleted: {
+                    mainButtonsLayout.buttonsList.push(editSceneObjBtn);
                 }
             }
 
@@ -99,13 +109,17 @@ Rectangle {
                 id: showSceneInfoBtn
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                 icon.source: "image://TiredImageProvider/info.svg"
+
                 onClicked: {
                     showSceneInfoBtn.checked = !showSceneInfoBtn.checked;
 
                     if (showSceneInfoBtn.checked) {
-                        addSceneObjBtn.checked = false;
-                        settingsBtn.checked = false;
+                        mainButtonsLayout.deselectOthers(showSceneInfoBtn);
                     }
+                }
+
+                Component.onCompleted: {
+                    mainButtonsLayout.buttonsList.push(showSceneInfoBtn);
                 }
             }
 
@@ -118,19 +132,32 @@ Rectangle {
                 id: settingsBtn
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                 icon.source: "image://TiredImageProvider/gear.svg"
+
                 onClicked: {
                     settingsBtn.checked = !settingsBtn.checked;
 
                     if (settingsBtn.checked) {
-                        addSceneObjBtn.checked = false;
-                        showSceneInfoBtn.checked = false;
+                        mainButtonsLayout.deselectOthers(settingsBtn);
                     }
+                }
+
+                Component.onCompleted: {
+                    mainButtonsLayout.buttonsList.push(settingsBtn);
                 }
             }
 
             Item {
                 id: spacerBottom
                 Layout.preferredHeight: _gaps.half
+            }
+
+            function deselectOthers(exceptItem) {
+                for (let i in mainButtonsLayout.buttonsList) {
+                    const btn = mainButtonsLayout.buttonsList[i];
+                    if (btn !== exceptItem) {
+                        btn.checked = false;
+                    }
+                }
             }
         }
     }
