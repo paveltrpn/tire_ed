@@ -8,7 +8,7 @@ import Tire 1.0
 
 import "../components"
 import "../sceneinfo"
-import "../add_forms"
+import "../addforms"
 import "../settings"
 
 Rectangle {
