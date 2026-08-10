@@ -89,7 +89,10 @@ Rectangle {
             id: addImplicitButton
             Layout.fillWidth: true
             Layout.preferredHeight: addItemsButtonsLayout.itemsHeight
+
             text: "Implicit surface"
+            icon.source: "image://TiredImageProvider/star-alt-3-svgrepo-com.svg"
+
             enabled: false
 
             font: _fonts.label_accent
