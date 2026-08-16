@@ -18,7 +18,7 @@ QuickTemplates.Button {
     property alias backgroundRadius: backgroundItem.radius
 
     property bool isBorderEnabled: false
-    property color backgroundColor: _color.background_overlay_40
+    property color backgroundColor: _color.background_overlay_60
 
     states: [
         State {

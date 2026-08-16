@@ -139,15 +139,13 @@ Rectangle {
                         width: 256
                         height: fileMenuColumn.implicitHeight
 
-                        padding: 0
-
-                        popupType: Popup.Native
+                        popupType: Popup.Window
                         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
+                        padding: 0
+
                         Component.onCompleted: {
-                            forceActiveFocus(); // Forces focus and layout resolution
-                            // Optional: you can open it in the next event loop tick
-                            //Qt.callLater(fileMenu.open)
+                            forceActiveFocus();
                         }
 
                         onVisibleChanged: {
@@ -156,45 +154,56 @@ Rectangle {
                             }
                         }
 
-                        contentItem: Rectangle {
+                        background: Rectangle {
+                            anchors.fill: parent
+                            color: _color.background_overlay
+                            radius: _radius.quarter
+                        }
+
+                        Column {
+                            id: fileMenuColumn
+                            anchors {
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             width: parent.width
-                            color: _color.background
-                            Column {
-                                id: fileMenuColumn
+                            spacing: 2
+                            NpContextMenuButton {
                                 width: parent.width
-                                NpContextMenuButton {
-                                    width: parent.width
-                                    height: 24
-                                    text: "Open"
-                                    icon.source: "image://TiredImageProvider/folder.svg"
-                                    font: _fonts.label_accent
-                                    onClicked: {
-                                        fileMenu.close();
-                                        fileDialog.show();
-                                    }
+                                height: 24
+                                text: "Open"
+                                icon.source: "image://TiredImageProvider/folder.svg"
+                                font: _fonts.label_accent
+                                onClicked: {
+                                    fileMenu.close();
+                                    fileDialog.show();
                                 }
-                                NpContextMenuButton {
-                                    width: parent.width
-                                    height: 24
-                                    text: "Save"
-                                    icon.source: "image://TiredImageProvider/save.svg"
-                                    font: _fonts.label_accent
-                                    onClicked: {
-                                        fileMenu.close();
-                                        fileDialog.show();
-                                    }
+                                topLeftRadius: _radius.quarter
+                                topRightRadius: _radius.quarter
+                            }
+                            NpContextMenuButton {
+                                width: parent.width
+                                height: 24
+                                text: "Save"
+                                icon.source: "image://TiredImageProvider/save.svg"
+                                font: _fonts.label_accent
+                                onClicked: {
+                                    fileMenu.close();
+                                    fileDialog.show();
                                 }
-                                NpContextMenuButton {
-                                    width: parent.width
-                                    height: 24
-                                    text: "Exit"
-                                    icon.source: "image://TiredImageProvider/door-open.svg"
-                                    font: _fonts.label_accent
-                                    onClicked: {
-                                        fileMenu.close();
-                                        MainWindow.quitApplication();
-                                    }
+                            }
+                            NpContextMenuButton {
+                                width: parent.width
+                                height: 24
+                                text: "Exit"
+                                icon.source: "image://TiredImageProvider/door-open.svg"
+                                font: _fonts.label_accent
+                                onClicked: {
+                                    fileMenu.close();
+                                    MainWindow.quitApplication();
                                 }
+                                bottomLeftRadius: _radius.quarter
+                                bottomRightRadius: _radius.quarter
                             }
                         }
                     }
@@ -238,22 +247,28 @@ Rectangle {
 
                         popupType: Popup.Window
 
-                        contentItem: Rectangle {
+                        background: Rectangle {
+                            anchors.fill: parent
+                            color: _color.background_overlay
+                            radius: _radius.quarter
+                        }
+
+                        Column {
+                            id: helpMenuColumn
                             width: parent.width
-                            color: _color.background
-                            Column {
-                                id: helpMenuColumn
+                            NpContextMenuButton {
                                 width: parent.width
-                                NpContextMenuButton {
-                                    width: parent.width
-                                    height: 24
-                                    text: "About..."
-                                    icon.source: "image://TiredImageProvider/circle-exclamation.svg"
-                                    font: _fonts.label_accent
-                                    onClicked: {
-                                        helpMenu.close();
-                                    }
+                                height: 24
+                                text: "About..."
+                                icon.source: "image://TiredImageProvider/circle-exclamation.svg"
+                                font: _fonts.label_accent
+                                onClicked: {
+                                    helpMenu.close();
                                 }
+                                topLeftRadius: _radius.quarter
+                                topRightRadius: _radius.quarter
+                                bottomLeftRadius: _radius.quarter
+                                bottomRightRadius: _radius.quarter
                             }
                         }
                     }
